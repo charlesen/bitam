@@ -4,10 +4,14 @@
 
 # Blockchain
 # -----------
+# A collection about awesome blockchains : https://github.com/openblockchains/awesome-blockchains
 # Blockchain package : http://blockxchain.org/2017/06/03/blockchain-and-python-exploring-the-python-blockchain-package/
 # http://blockxchain.org/2017/06/04/building-a-blockchain-with-python-1/
 # https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54
 # NaiveChain : https://github.com/lhartikk/naivechain
+# Python Dumbcoin :
+  - https://github.com/julienr/ipynb_playground/blob/master/bitcoin/dumbcoin/dumbcoin.ipynb
+  - https://news.ycombinator.com/item?id=15945490
 
 # Crypto/Hashage
 # -----------
