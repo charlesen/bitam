@@ -4,9 +4,19 @@
 
 # Blockchain
 # -----------
+# Blockchain package : http://blockxchain.org/2017/06/03/blockchain-and-python-exploring-the-python-blockchain-package/
 # http://blockxchain.org/2017/06/04/building-a-blockchain-with-python-1/
+# https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54
+# NaiveChain : https://github.com/lhartikk/naivechain
 
 # Crypto/Hashage
 # -----------
 # Hashage : http://cours-info.iut-bm.univ-fcomte.fr/wiki/pmwiki.php/ModulesPython/Hashlib
 # Modules python : http://cours-info.iut-bm.univ-fcomte.fr/wiki/pmwiki.php/ModulesPython/ModulesPython
+
+
+# Libs
+
+# Python LevelDB
+$ sudo apt-get install libleveldb-dev
+$ pip install plyvel

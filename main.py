@@ -6,6 +6,9 @@ import time
 
 # Block class. Used to create blocks. Blocks are then added to the blockchain.
 
+BITAM_DB_NAME = 'bitam_db'
+
+
 class Block:
 
     def __init__(self, index, difficulty, nonce, previousHash, timestamp, data, currentHash):
@@ -137,6 +140,14 @@ def isValidChain(bcToValidate):
         else:
             return False
     return True
+
+
+def save_blockchain(self, blockchain):
+    """ Save all Blockchain """
+    # TODO : remote save
+    db = plyvel.DB('core/db/bitam.db', create_if_missing=True)
+    db.put(BITAM_DB_NAME, blockchain)
+    db.close()
 
 
 def main():
