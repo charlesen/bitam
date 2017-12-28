@@ -1,0 +1,12 @@
+#=================
+# Documentation
+#=================
+
+# Blockchain
+# -----------
+# http://blockxchain.org/2017/06/04/building-a-blockchain-with-python-1/
+
+# Crypto/Hashage
+# -----------
+# Hashage : http://cours-info.iut-bm.univ-fcomte.fr/wiki/pmwiki.php/ModulesPython/Hashlib
+# Modules python : http://cours-info.iut-bm.univ-fcomte.fr/wiki/pmwiki.php/ModulesPython/ModulesPython
