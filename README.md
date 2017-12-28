@@ -1,2 +1,2 @@
 # bitam
-Bitam - Bit as Money
+Bitam - Binary digiT as a Money
