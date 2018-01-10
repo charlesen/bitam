@@ -11,8 +11,11 @@ from flask import Flask
 from flask import request
 
 # Bitam core
-node = Flask(__name__)
+app = Flask(__name__)
 
+@app.route("/")
+def hello():
+    return "Hello, BTM ! Bit as African Money"
 
 @node.route('/btm', methods=['POST'])
 def transaction():
