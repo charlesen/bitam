@@ -59,7 +59,7 @@ def get_blocks():
 def mine():
     # Get the last proof of work
     last_block = blockchain[len(blockchain) - 1]
-    last_proof = last_block.data['proof-of-work']
+    last_proof = last_block.data['pow']
     # Find the proof of work for
     # the current block being mined
     # Note: The program will hang here until a new
@@ -74,7 +74,7 @@ def mine():
     # Now we can gather the data needed
     # to create the new block
     new_block_data = {
-        "proof-of-work": proof,
+        "pow": proof,
         "transactions": list(this_nodes_transactions)
     }
     new_block_index = last_block.index + 1
