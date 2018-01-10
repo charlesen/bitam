@@ -17,7 +17,7 @@ app = Flask(__name__)
 def hello():
     return "Hello, BTM ! Bit as African Money"
 
-@node.route('/btm', methods=['POST'])
+@app.route('/btm', methods=['POST'])
 def transaction():
     # On each new POST request,
     # we extract the transaction data
@@ -34,7 +34,7 @@ def transaction():
     return "Transaction submission successful\n"
 
 
-@node.route('/blocks', methods=['GET'])
+@app.route('/blocks', methods=['GET'])
 def get_blocks():
     chain_to_send = blockchain
     # Convert our blocks into dictionaries
@@ -55,7 +55,7 @@ def get_blocks():
     return chain_to_send
 
 
-@node.route('/mine', methods=['GET'])
+@app.route('/mine', methods=['GET'])
 def mine():
     # Get the last proof of work
     last_block = blockchain[len(blockchain) - 1]
@@ -99,8 +99,8 @@ def mine():
         "hash": last_block_hash
     }) + "\n"
 
-# Run Flask app
-node.run()
+# Run Bitam (Flask) app
+app.run()
 
 
 
