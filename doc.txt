@@ -13,6 +13,8 @@
   - https://github.com/julienr/ipynb_playground/blob/master/bitcoin/dumbcoin/dumbcoin.ipynb
   - https://news.ycombinator.com/item?id=15945490
 
+# https://medium.com/crypto-currently/lets-make-the-tiniest-blockchain-bigger-ac360a328f4d
+
 # Crypto/Hashage
 # -----------
 # Hashage : http://cours-info.iut-bm.univ-fcomte.fr/wiki/pmwiki.php/ModulesPython/Hashlib
@@ -24,3 +26,7 @@
 # Python LevelDB
 $ sudo apt-get install libleveldb-dev
 $ pip install plyvel
+
+# Python rockdb
+# Doc : https://pyrocksdb.readthedocs.io/en/v0.4/tutorial/index.html
+# https://github.com/twmht/python-rocksdb
