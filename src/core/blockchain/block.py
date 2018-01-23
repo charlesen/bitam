@@ -11,10 +11,10 @@ https://bigishdata.com/2017/10/17/write-your-own-blockchain-part-1-creating-stor
 
 """
 
-# BDD dir
-# TODO : build something more scalable
+# Data dir
 BTM_DATA_DIR = 'btm_data'
 
+# Nonce
 NUM_ZEROS = 7
 
 
@@ -29,7 +29,7 @@ class Block(object):
             index (int)         : Block index
             timestamp (datetime): current time
             data (dict)         : Block data {'trx_pow': proof of work,
-                                              'trx_data': Data,
+                                              'trx_meta': Data,
                                               'trx_smc': Smart contract
                                               'trx_notes': notes}
             previous_hash (str) : The previous block hash
@@ -40,6 +40,8 @@ class Block(object):
         # in creating the first block, needs to be removed in future
         if not hasattr(self, 'hash'):
             self.hash = self.hash_block()
+
+        self.nonce = 'None'
 
         # Init block
         self.init_block()
@@ -56,6 +58,17 @@ class Block(object):
     def __str__(self):
         return "Block<previous_hash: %s,hash: %s>" % (self.previous_hash, self.hash)
 
+    def __eq__(self, other):
+        return (self.index == other.index and
+                self.timestamp == other.timestamp and
+                self.prev_hash == other.prev_hash and
+                self.hash == other.hash and
+                self.data == other.data and
+                self.nonce == other.nonce)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def create_genesis_block(self):
         """ Generate genesis block """
         block_data = {'index': 0,
@@ -63,23 +76,12 @@ class Block(object):
                       'previous_hash': None,
                       'hash': '88c298803a2731f7ddb8a0f88171c1dcd1e2e8543177fa5d2cc2df64fdb2c03f',
                       'data': {'trx_pow': 0,
-                               'trx_data': None,
+                               'trx_meta': None,
                                'trx_smc': None,  # Smart contract
                                'trx_notes': "Quand l'afrique s'éveillera"}
                      }
         block = Block(block_data)
         return block
-
-    def hash_block(self):
-        """ Hash a block """
-        return self.hash_data(str(self.index) + str(self.timestamp) +
-                              str(self.data) + str(self.previous_hash))
-
-    def hash_data(self, data):
-        """ Hash any data """
-        sha = hasher.sha256()
-        sha.update(str(data))
-        return sha.hexdigest()
 
     def init_block(self):
         """ Init blockchain """
@@ -92,6 +94,27 @@ class Block(object):
             # create first block
             first_block = self.create_genesis_block()
             self.save_block(first_block)
+
+    def hash_block(self):
+        """ Hash a block """
+        return self.hash_data(str(self.index) + str(self.timestamp) +
+                              str(self.data) + str(self.previous_hash))
+
+    def hash_data(self, data):
+        """ Hash any data """
+        sha = hasher.sha256()
+        sha.update(str(data))
+        return sha.hexdigest()
+
+    def is_block_valid(self):
+        """
+          Current validity is only that the hash begins with at least NUM_ZEROS
+        """
+        # self.update_self_hash()
+        if str(self.hash[0:NUM_ZEROS]) == '0' * NUM_ZEROS:
+          return True
+        else:
+          return False
 
     def save_block(self, block):
         """ Save a block """
@@ -131,11 +154,15 @@ class Block(object):
         while str(block_hash[0:NUM_ZEROS]) != '0' * NUM_ZEROS:
             nonce += 1
             block_hash=self.hash_data(str(index) + str(timestamp) +
-                                  str(data) + str(previous_hash))
+                                  str(data) + str(previous_hash) +
+                                  str(nonce))
         block_data={}
         block_data['index']=int(last_block.index) + 1
         block_data['timestamp']=date.datetime.now()
-        block_data['data']="I block #%s" % last_block.index
+        block_data['data']={'trx_pow': nonce,
+                            'trx_meta': None,
+                            'trx_smc': None,  # Smart contract
+                            'trx_notes': "New block at #%s index" % last_block.index}
         block_data['previous_hash']=last_block.hash
         block_data['hash']=block_hash
         return Block(block_data)
