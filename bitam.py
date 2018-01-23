@@ -41,23 +41,22 @@ def transaction():
 @app.route('/blocks', methods=['GET'])
 def get_blocks():
     """ Blocks """
-    chain_to_send = blockchain
     # Convert our blocks into dictionaries
     # so we can send them as json objects later
-    for i in range(len(chain_to_send)):
-        block = chain_to_send[i]
+    for i in range(len(blockchain)):
+        block = blockchain[i]
         block_index = str(block.index)
         block_timestamp = str(block.timestamp)
         block_data = str(block.data)
         block_hash = block.hash
-        chain_to_send[i] = {
+        blockchain[i] = {
             "index": block_index,
             "timestamp": block_timestamp,
             "data": block_data,
             "hash": block_hash
         }
-    chain_to_send = json.dumps(chain_to_send)
-    return chain_to_send
+    blockchain = json.dumps(blockchain)
+    return blockchain
 
 
 @app.route('/mine', methods=['GET'])
@@ -105,7 +104,8 @@ def mine():
     }) + "\n"
 
 
-# Sample HTTP error handling
+# HTTP Errors
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html'), 404

@@ -6,4 +6,5 @@ app = Flask(__name__)
 from bitam import app
 
 # Run Bitam (Flask) app
-app.run()
+if __name__ == "__main__":
+    app.run()
